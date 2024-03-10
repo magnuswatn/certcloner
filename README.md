@@ -5,9 +5,9 @@
 
 -----
 
-So you need to create some test data for something that is signed with a certificate? So you need to whip up your own certificate, preferably with a full chain, to be as similar to the original as possible. You could always fire up `step-ca` or something similar, but why not just clone the original chain, so that everything is as close to the real thing as possible?
+So you need to create some test data for something that is signed with a certificate? Then you need to create your own certificate, preferably with a full chain, as similar to the original as possible. You could always fire up `step-ca` or something similar, but why not just clone the original chain, so that everything is as close to the real thing as possible?
 
-Certcloner lets you do just that. Give it a some certificates, and it will create clones with a private key that you control.
+Certcloner lets you do just that. Give it some certificates, and it will create clones with a private key that you control.
 
 Limitations:
 
