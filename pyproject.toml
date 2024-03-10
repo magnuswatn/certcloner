@@ -7,14 +7,13 @@ name = "certcloner"
 dynamic = ["version"]
 description = ''
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 license = "MIT"
 keywords = []
 authors = [{ name = "Magnus Watn", email = "magnus@watn.no" }]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
@@ -23,6 +22,9 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = ["cryptography", "click"]
+
+[project.scripts]
+certcloner = "certcloner.main:main"
 
 [project.urls]
 Documentation = "https://github.com/magnuswatn/certcloner#readme"
@@ -33,7 +35,7 @@ Source = "https://github.com/magnuswatn/certcloner"
 path = "certcloner/__about__.py"
 
 [tool.hatch.envs.default]
-dependencies = ["coverage[toml]>=6.5", "pytest"]
+dependencies = ["coverage[toml]>=6.5", "pytest", "pyopenssl"]
 [tool.hatch.envs.default.scripts]
 test = "pytest {args:tests}"
 test-cov = "coverage run -m pytest {args:tests}"
@@ -55,7 +57,6 @@ all = ["style", "typing"]
 [tool.black]
 target-version = ["py37"]
 line-length = 120
-skip-string-normalization = true
 
 [tool.ruff]
 target-version = "py37"
@@ -104,6 +105,7 @@ ignore = [
     "PLR0913",
     "PLR0915",
     "EM101",
+    "PLR2004",
 ]
 unfixable = [
     # Don't touch unused imports
