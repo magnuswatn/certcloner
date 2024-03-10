@@ -63,6 +63,9 @@ dependencies = [
 [tool.hatch.envs.types.scripts]
 check = "mypy --install-types --non-interactive {args:src/certcloner tests}"
 
+[tool.hatch.envs.hatch-static-analysis]
+config-path = "ruff_defaults.toml"
+
 [tool.coverage.run]
 source_pkgs = ["certcloner", "tests"]
 branch = true
@@ -81,3 +84,6 @@ exclude_lines = [
     "if __name__ == .__main__.:",
     "if TYPE_CHECKING:",
 ]
+
+[tool.ruff]
+extend = "ruff_defaults.toml"

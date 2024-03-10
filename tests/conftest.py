@@ -28,10 +28,7 @@ def all_normal_cert_paths() -> list[Path]:
 
 @pytest.fixture(scope="session")
 def all_certs(all_normal_cert_paths: list[Path]) -> list[Certificate]:
-    certs = []
-    for path in all_normal_cert_paths:
-        certs.append(load_pem_x509_certificate(path.read_bytes()))
-    return certs
+    return [load_pem_x509_certificate(path.read_bytes()) for path in all_normal_cert_paths]
 
 
 @pytest.fixture(scope="session")

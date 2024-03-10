@@ -96,7 +96,7 @@ def clone_cert(
         # create a key that matches what we know about the signing key.
         alg_params = org_cert.signature_algorithm_parameters
         signature_length = len(org_cert.signature)
-        if isinstance(alg_params, (PKCS1v15, PSS)):
+        if isinstance(alg_params, PKCS1v15 | PSS):
             signing_key = generate_rsa_private_key(65537, signature_length * 8)
         elif isinstance(alg_params, ECDSA):
             if signature_length > 110:
@@ -142,7 +142,7 @@ def clone_cert(
             # Most likely already has a comment extension
             logger.warning("Failed to add comment extension to %s: %s", org_cert.subject.rfc4514_string(), ve)
 
-    if not isinstance(hash_algo := org_cert.signature_hash_algorithm, (SHA256, SHA384, SHA512)):
+    if not isinstance(hash_algo := org_cert.signature_hash_algorithm, SHA256 | SHA384 | SHA512):
         logger.debug("Replacing unsupported hash algorithm with SHA256 for %s", org_cert.subject.rfc4514_string())
         hash_algo = SHA256()
 
