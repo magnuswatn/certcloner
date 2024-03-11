@@ -228,7 +228,7 @@ def main(files: tuple[BufferedReader], *, no_comment: bool, keep_key_identifiers
     try:
         original_certs = load_certs([file.read() for file in files])
     except ValueError as error:
-        raise click.BadArgumentUsage("Failed to parse input as certificates") from error
+        raise click.ClickException("Failed to parse input as certificates") from error
 
     try:
         cloned_certs = clone_certs(
@@ -237,7 +237,7 @@ def main(files: tuple[BufferedReader], *, no_comment: bool, keep_key_identifiers
             update_key_identifiers=not keep_key_identifiers,
         )
     except InvalidInputError as error:
-        raise click.BadArgumentUsage(str(error)) from error
+        raise click.ClickException(str(error)) from error
 
     for cert, key in cloned_certs:
         click.secho(f"# Subject: {cert.subject.rfc4514_string()}")

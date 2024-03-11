@@ -37,7 +37,7 @@ def test_clone_certs_bad_certificate_gives_error_message():
 
         runner = CliRunner()
         result = runner.invoke(main, [str(temp_file)])
-        assert result.exit_code == 2
+        assert result.exit_code == 1
         assert "Failed to parse input as certificates" in result.output
 
 
@@ -49,5 +49,5 @@ def test_invalid_cert_gives_error_message(dsa_cert: Certificate, encoding: Encod
 
         runner = CliRunner()
         result = runner.invoke(main, [str(temp_file)])
-        assert result.exit_code == 2
+        assert result.exit_code == 1
         assert " Unsupported key in cert CN=DSA key: DSAPublicKey" in result.output
