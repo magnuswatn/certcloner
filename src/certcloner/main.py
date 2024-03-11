@@ -240,7 +240,8 @@ def main(files: tuple[BufferedReader], *, no_comment: bool, keep_key_identifiers
         raise click.BadArgumentUsage(str(error)) from error
 
     for cert, key in cloned_certs:
-        click.secho(f"# {cert.subject.rfc4514_string()}")
+        click.secho(f"# Subject: {cert.subject.rfc4514_string()}")
+        click.secho(f"# Issuer: {cert.issuer.rfc4514_string()}")
         click.secho(cert.public_bytes(Encoding.PEM).decode())
         click.secho(key.private_bytes(Encoding.PEM, PrivateFormat.PKCS8, NoEncryption()).decode())
 
