@@ -108,7 +108,7 @@ def clone_cert(
         else:
             exp_text = (
                 f"Unsupported signature algorithm in cert {org_cert.subject.rfc4514_string()}: "
-                f"{org_cert.signature_algorithm_oid}"
+                f"{org_cert.signature_algorithm_oid.dotted_string}"
             )
             raise UnsupportedSignatureInCertError(exp_text)
         cloned_keys[org_cert.issuer] = signing_key
